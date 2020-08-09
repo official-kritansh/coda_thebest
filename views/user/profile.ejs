@@ -1,0 +1,34 @@
+<%- include('../partials/header'); %>
+<div class="row" style="margin-top: 2rem;">
+ 
+    <div class="col-sm-12" >
+       
+        <div class="card" style="margin-top:2rem;">
+            <div class="card-header">
+              <b><%=h.name%></b>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Challenges Solved :&nbsp;&nbsp;<%=h.challangesSolved%></h5>
+              <h5  class="card-title">Votes :&nbsp;&nbsp;<%=h.votes%></h5>
+              <p class="card-text"><b>Expertise Level:&nbsp;&nbsp; </b><%=h.expertiseLevel%>  </p>
+              <p class="card-text"><b>Data Structures Rating:&nbsp;&nbsp; </b><%=h.expertIn.dataStructure%>  </p>
+              <p class="card-text"><b>Java Rating:&nbsp;&nbsp; </b><%=h.expertIn.java%>  </p>
+              <p class="card-text"><b>Python Rating:&nbsp;&nbsp; </b><%=h.expertIn.python%>  </p>
+              <p class="card-text"><b>C Rating:&nbsp;&nbsp; </b><%=h.expertIn.c%>  </p>
+              <%if(done){%>
+                <a href="#" class="btn btn-danger">Already Voted</a>
+            <%}else{%>
+                <a href="/vote/<%=h.hid%>" class="btn btn-danger">Vote Now</a>
+            <%}%>
+                
+              
+            </div>
+        </div>
+    </div>
+
+   
+    
+</div>
+
+
+<%- include('../partials/footer'); %>

@@ -1,0 +1,147 @@
+<%- include('../partials/aheader'); %>
+
+<div class="container" style="margin-top: 2rem;">
+    <div class="row" style="margin-top: 2rem;">
+        <button data-toggle="modal" data-target="#addHacker" class="btn btn-primary my-2 my-sm-0" type="submit">Add</button>
+    </div>
+    <div class="row" style="margin-top: 2rem;">
+        <table class="table-responsive table table-striped">
+            <thead>
+             
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Challanges Solved</th>
+                <th scope="col">Level</th>
+                <th scope="col">Votes</th>
+                <th scope=""></th>
+                <th scope=""></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%var i=1;%>
+              <%hackers.forEach((h)=>{%>
+                <tr>
+                  <th scope="row"><%=i++%></th>
+                  <td><%=h.name%></td>
+                  <td><%=h.challangesSolved%></td>
+                  <td><%=h.expertiseLevel%></td>
+                  <td><%=h.votes%></td>
+                  <td><button class="btn btn-success my-2 my-sm-0" data-toggle="modal" data-target="#editHacker<%=h.hid%>" type="submit">Edit</button></td>
+                  <td><a href="/admin/dashboard/delete/<%=h.hid%>" class="btn btn-success my-2 my-sm-0" type="submit">Delete</a></td>
+                </tr>
+              <%})%>
+             
+             
+            </tbody>
+          </table>
+    </div>
+
+    <div class="modal fade" id="addHacker" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Hacker!!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="f1" action="/admin/dashboard/add" method="POST">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="text" required class="form-control" name="name" aria-describedby="emailHelp">
+      
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Challenges Solved</label>
+                <input type="number" required name="solved" min="1" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Expertise Level</label>
+                <input type="number" required name="level" min="1" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Data Structures Rating</label>
+                <input type="number" required name="ds" min="1" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">C Rating</label>
+                <input type="number" required name="c" min="1" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Java Rating</label>
+                <input type="number" required name="java" min="1" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Python Rating</label>
+                <input type="number" required name="Python" min="1" class="form-control" id="exampleInputPassword1">
+              </div>
+              
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button  form="f1" class="btn btn-primary">Add</button>
+         
+          </div>
+        </div>
+      </div>
+    </div>
+    <%hackers.forEach((h)=>{%>
+      <div class="modal fade" id="editHacker<%=h.hid%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add New Hacker!!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="f<%=h.hid%>" action="/admin/dashboard/edit/<%=h.hid%>" method="POST">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text" value="<%=h.name%>" required class="form-control" name="name" aria-describedby="emailHelp">
+        
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Challenges Solved</label>
+                  <input type="number" value="<%=h.challangesSolved%>" required name="solved" min="1" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Expertise Level</label>
+                  <input type="number" value="<%=h.expertiseLevel%>" required name="level" min="1" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Data Structures Rating</label>
+                  <input type="number" value="<%=h.expertIn.dataStructure%>" required name="ds" min="1" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">C Rating</label>
+                  <input type="number" value="<%=h.expertIn.c%>" required name="c" min="1" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Java Rating</label>
+                  <input type="number" value="<%=h.expertIn.java%>" required name="java" min="1" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Python Rating</label>
+                  <input type="number" value="<%=h.expertIn.python%>" required name="Python" min="1" class="form-control" id="exampleInputPassword1">
+                </div>
+                
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button  form="f<%=h.hid%>" class="btn btn-primary">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    <%})%>
+</div>
+
+
+<%- include('../partials/footer'); %>
